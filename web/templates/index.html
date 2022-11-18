@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <br />
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link {% if action == 'hide' %}active{% endif %}" id="hide-tab" data-toggle="tab" href="#hide"
+		    role="tab" aria-controls="hide" {% if action == 'hide' %}aria-selected="true"{% else %}aria-selected="false"{% endif %}>Encode</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if action == 'reveal' %}active{% endif %}" id="reveal-tab" data-toggle="tab" href="#reveal"
+		    role="tab" aria-controls="reveal" {% if action == 'reveal' %}aria-selected="true"{% else %}aria-selected="false"{% endif %}>Decode</a>
+        </li>
+    </ul>
+
+    <br />
+
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane {% if action == 'hide' %}show active{% endif %}" id="hide">
+            <div>
+                <h2 class="text-center">Enkripsi</h2>
+                <form id="hide" class="form" method="POST" action="/?action=hide" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="">Pilih Gambar : </label> 
+                        <div class="file-upload-wriper">
+                            <input class="form-control files" type="file" name="file" required>
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Masukan Isi Pesan : </label>
+                        <textarea class="form-control" rows="3" name="secret" placeholder="Masukan rahasia pesan disini." required></textarea>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Encode</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="tab-pane {% if action == 'reveal' %}show active{% endif %}" id="reveal">
+            <div>
+                <h2 class="text-center">Dekripsi</h2>
+                <form id=reveal class="form" method="POST" action="/?action=reveal" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="">Pilih Gambar : </label>
+                        <input class="form-control files" type="file" name="file" required />
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Decode</button>
+                    </div>
+                </form>
+            </div>
+            {% if message %}
+                <h3>Hasil Dekripsi</h3>
+                <div class="card">
+                    <div class="card-body">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

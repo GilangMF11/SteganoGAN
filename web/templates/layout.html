@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  {% block head %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Stegano Web" />
+    <meta name="author" content="Cédric Bonhomme" />
+    <title>Steganografi with GAN</title>
+    <link rel="shortcut icon" href="{{ url_for('.static', filename='img/favicon.png') }}" />
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='npm_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <!-- Add custom CSS here -->
+    <link rel="stylesheet" href="{{ url_for('.static', filename = 'css/custom.css') }}" />
+    <script src="{{ url_for('static', filename='npm_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='npm_components/popper.js/dist/umd/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='npm_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  </head>
+  {% endblock %}
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0, 0, 128);">
+        <a class="navbar-brand mr-auto" href="/">Aplikasi Steganografi GAN</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% block menu_links %}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                <li class="nav-item">
+                    <a href="/list"><span class="glyphicon glyphicon-list"></span> </a>
+                </li>
+            </ul>
+        </div>
+        {% endblock %}
+    </nav>
+    <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <br />
+            <div class="alert alert-{{category}}">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </div>
+    {% block content %}{% endblock %}
+    <br />
+    <footer class="footer">
+        <div class="container-fluid text-center" >
+            <div class="row">
+                <div class="col-md-12 text-truncate">
+		    <a href="https://github.com/cedricbonhomme/stegano-web">This software</a> is using
+		    the Python <a href="https://pypi.python.org/pypi/Stegano">Stegano</a> library
+                    and is under AGPLv3 license.
+                </div>
+            </div>
+        </div>
+    </footer>
+  </body>
+</html>

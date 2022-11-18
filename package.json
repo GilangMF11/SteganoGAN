@@ -1,0 +1,19 @@
+{
+  "name": "stegano-web",
+  "version": "0.0.1",
+  "description": "stegano-web",
+  "scripts": {
+    "postinstall": "cd web/static/ ; ln -sf ../../node_modules npm_components"
+  },
+  "author": "Cédric Bonhomme",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.6.1",
+    "popper.js": "^1.16.1"
+  },
+  "engines": {
+    "node": "16.x",
+    "npm": "8.3.0"
+  }
+}
